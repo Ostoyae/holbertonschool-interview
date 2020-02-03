@@ -4,6 +4,9 @@
 def canUnlockAll(boxes):
     if not isinstance(boxes, list):
         return False
+    elif list is None:
+        return True
+    
     n_boxes = len(boxes)
     if n_boxes is 1 or n_boxes is 0:
         return True
