@@ -2,10 +2,10 @@
 
 
 def canUnlockAll(boxes):
-    if not isinstance(boxes, list):
-        return False
-    elif list is None:
+    if boxes is None:
         return True
+    elif not isinstance(boxes, list):
+        return False
     
     n_boxes = len(boxes)
     if n_boxes is 1 or n_boxes is 0:
