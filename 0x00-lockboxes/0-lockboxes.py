@@ -2,11 +2,8 @@
 
 
 def canUnlockAll(boxes):
-    if boxes is None:
-        return True
-    elif not isinstance(boxes, list):
+    if not isinstance(boxes, list):
         return False
-    
     n_boxes = len(boxes)
     if n_boxes is 1 or n_boxes is 0:
         return True
@@ -45,18 +42,21 @@ def r_unlock(keys: list, boxes: list, visited: dict, n_boxes: int):
     if len(keys) == 0:
         return
     k, *keys = keys
-    if k > n_boxes - 1 or visited[k]:
-        r_unlock(keys, boxes, visited, n_boxes)
-        # keys = [i for i in keys if i < n_boxes or not visited[i]]
-    else:
-        visited[k] = True
-        b = list()
-        keys = [i for i in keys if i < n_boxes or not visited.get(k)]
-        try:
-            b = [i for i in boxes[k] if not visited[i]]
-        except ValueError:
-            pass
-        keys += b
+    try:
+        if k > n_boxes - 1 or visited[k]:
+            r_unlock(keys, boxes, visited, n_boxes)
+            # keys = [i for i in keys if i < n_boxes or not visited[i]]
+        else:
+            visited[k] = True
+            b = list()
+            keys = [i for i in keys if i < n_boxes or not visited.get(k)]
+            try:
+                b = [i for i in boxes[k] if not visited[i]]
+            except ValueError:
+                pass
+            keys += b
+    except Exception:
+        pass
 
     r_unlock(keys, boxes, visited, n_boxes)
 
