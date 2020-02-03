@@ -5,8 +5,8 @@ def canUnlockAll(boxes):
     if not isinstance(boxes, list):
         return False
     n_boxes = len(boxes)
-    if n_boxes is 1:
-        return False
+    if n_boxes is 1 or n_boxes is 0:
+        return True
     elif n_boxes is 0 or len(boxes[0]) is 0:
         return False
     key_ring = boxes[0]
