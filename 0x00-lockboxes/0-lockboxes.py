@@ -6,7 +6,7 @@ def canUnlockAll(boxes):
         return False
     n_boxes = len(boxes)
     if n_boxes is 1:
-        return True
+        return False
     elif n_boxes is 0 or len(boxes[0]) is 0:
         return False
     key_ring = boxes[0]
