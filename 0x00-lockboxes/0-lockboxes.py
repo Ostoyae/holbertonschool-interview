@@ -1,51 +1,66 @@
 #!/usr/bin/python3
 
+
 def canUnlockAll(boxes):
     if not isinstance(boxes, list):
         return False
-
     n_boxes = len(boxes)
     if n_boxes is 1:
         return True
     elif n_boxes is 0 or len(boxes[0]) is 0:
         return False
-    keys = boxes[0]
+    key_ring = boxes[0]
     visited = {k: False for k in range(n_boxes)}
     visited[0] = True
 
-    while keys:
-        keys = unlock(keys, boxes, visited)
+    # while key_ring:
+    #     key_ring = unlock(key_ring, boxes, visited, n_boxes)
+    r_unlock(key_ring, boxes, visited, n_boxes)
 
-    return True if hasAllVisited(visited) else False
+    return True if has_all_visited(visited) else False
 
 
-def unlock(keys: list, boxes: list, visited : dict):
+def unlock(keys: list, boxes: list, visited: dict, n_boxes: int):
     for k in keys:
-        if visited[k]:
+        # print(keys)
+        if k > n_boxes - 1 or visited[k]:
             keys.remove(k)
         else:
+            b = list()
             keys.remove(k)
             visited[k] = True
             try:
-                boxes[k].remove(k)
+                b = [i for i in boxes[k] if not visited[i]]
             except ValueError:
                 pass
-            if len(boxes[k]) > 0:
-                keys += boxes[k]
+            keys += b
 
-    
     return keys if len(keys) > 0 else None
 
-def hasAllVisited(visited):
+
+def r_unlock(keys: list, boxes: list, visited: dict, n_boxes: int):
+    if len(keys) == 0:
+        return
+    k, *keys = keys
+    if k > n_boxes - 1 or visited[k]:
+        r_unlock(keys, boxes, visited, n_boxes)
+        # keys = [i for i in keys if i < n_boxes or not visited[i]]
+    else:
+        visited[k] = True
+        b = list()
+        keys = [i for i in keys if i < n_boxes or not visited.get(k)]
+        try:
+            b = [i for i in boxes[k] if not visited[i]]
+        except ValueError:
+            pass
+        keys += b
+
+    r_unlock(keys, boxes, visited, n_boxes)
+
+
+def has_all_visited(visited):
     return False if False in visited.values() else True
 
+
 if __name__ == "__main__":
-    boxes = [[1], [2], [3], [4], []]
-    print(canUnlockAll(boxes))
-
-    boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-    print(canUnlockAll(boxes))
-
-    boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-    print(canUnlockAll(boxes))
-
+    pass
