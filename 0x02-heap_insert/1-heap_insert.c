@@ -2,10 +2,10 @@
 
 
 /**
- * Insert a node into a max binary heap.
- * @root
- * @value
- * @return
+ * heap_insert - Insert a node into a max binary heap.
+ * @root: Head node of a binary tree 
+ * @value: Value to set newly inserted node as
+ * Return: Pointer to newly constructed node or NULL if error.
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
