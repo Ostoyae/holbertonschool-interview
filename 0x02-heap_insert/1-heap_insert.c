@@ -61,6 +61,12 @@ binary_tree_t *handle_head(int value, binary_tree_t *cur_node)
 		node->right = cur_node;
 		node->left = cur_node->left;
 		cur_node->left = NULL;
+		if (!cur_node->left && cur_node->right)
+		{
+			cur_node->left = cur_node->right->left;
+			cur_node->right->left = NULL;
+			cur_node->left->parent = cur_node;
+		}
 	}
 	else
 		node->left = cur_node;
