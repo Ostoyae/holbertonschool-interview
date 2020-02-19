@@ -34,6 +34,4 @@ bool is_complete(const binary_tree_t *root);
 
 bool has_leaves(const binary_tree_t *root);
 
-
-
 #endif
