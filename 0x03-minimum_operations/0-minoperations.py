@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 calculates the fewest number of operations
 limited to only `Copy All` and `Paste`
