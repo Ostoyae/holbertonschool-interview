@@ -50,8 +50,6 @@ def minOperations(n):
     while i <= n:
         if n % i:
             i += 1
-        elif i > 9:
-            return n
         else:
             f += i
             n //= i
