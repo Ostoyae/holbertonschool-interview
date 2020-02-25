@@ -6,7 +6,7 @@ needed to result in exactly n H characters in the file.
 """
 
 
-def minOperations(n):
+def _minOperations(n):
 
     f = 0
 
@@ -31,7 +31,7 @@ def minOperations(n):
     return int(f)
 
 
-def _minOperations(n):
+def minOperations(n):
     """calculates the fewest number of operations
 
     Keyword arguments:
@@ -50,6 +50,8 @@ def _minOperations(n):
     while i <= n:
         if n % i:
             i += 1
+        elif i > 9:
+            return n
         else:
             f += i
             n //= i
