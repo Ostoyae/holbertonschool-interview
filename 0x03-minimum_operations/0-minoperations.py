@@ -38,7 +38,7 @@ def minOperations(n):
     n -- number of Charaters to achieve
     """
 
-    if n in [0, 1]:
+    if n <= 1:
         return 0
 
     f = 0
