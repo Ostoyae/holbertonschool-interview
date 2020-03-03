@@ -24,7 +24,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	while (!verify_stable(grid1, grid2))
 	{
 		printf("=\n");
-		print_grid(grid1);
+        p_grid(grid1);
 		topple_piles(grid1, grid2);
 	}
 
@@ -108,10 +108,10 @@ bool verify_stable(int grid[3][3], int stable[3][3])
 }
 
 /**
- * print_grid - prints a grid.
+ * p_grid - prints a grid.
  * @grid : matrix to print
  */
-void print_grid(int grid[3][3])
+void p_grid(int grid[3][3])
 {
 	int i, j;
 

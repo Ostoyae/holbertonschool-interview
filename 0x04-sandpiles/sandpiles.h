@@ -1,5 +1,5 @@
-#ifndef _SANDPILES_H
-#define _SANDPILES_H
+#ifndef SANDPILES_H
+#define SANDPILES_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,6 +13,6 @@ bool verify_stable(int grid[3][3], int stable[3][3]);
 
 void give(int r, int c, int grid[3][3]);
 
-void print_grid(int grid[3][3]);
+void p_grid(int grid[3][3]);
 
 #endif
