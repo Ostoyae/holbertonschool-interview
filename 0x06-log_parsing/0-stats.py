@@ -1,8 +1,8 @@
 #!/usr/bin/python3
+""" 0x06 log parsing This program will parse each line."""
+
 import signal
 import sys
-
-""" 0x06 log parsing This program will parse each line."""
 
 
 class LineParser:
@@ -43,7 +43,7 @@ class StateCode:
             self._status[status] += 1
 
         if self._read_iter % 10 == 0:
-            print(f"File size: {self._file_size}")
+            print("File size: {}".format(self._file_size))
             for (k, v) in self._status.items():
                 if v > 0:
                     print(f"{k}: {v}")
