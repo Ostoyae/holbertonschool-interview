@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-import signal
-import sys
 
 """0x06 log parsing
 
 This program will parse each line.
 """
+
+import signal
+import sys
 
 
 class LineParser:
@@ -76,4 +77,7 @@ class StateCode:
 
 
 if __name__ == "__main__":
+    """Entry point
+    """
+
     StateCode().loop()
