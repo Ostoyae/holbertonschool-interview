@@ -1,17 +1,12 @@
 #!/usr/bin/python3
-
-"""0x06 log parsing
-
-This program will parse each line.
-"""
-
 import signal
 import sys
+
+""" 0x06 log parsing This program will parse each line."""
 
 
 class LineParser:
     """Define method for parsing
-
     """
 
     @staticmethod
@@ -29,7 +24,7 @@ class LineParser:
 
 
 class StateCode:
-    """     Define class for reading lines form stdin
+    """ Define class for reading lines form stdin
     """
 
     _buf_size = 512
@@ -77,7 +72,5 @@ class StateCode:
 
 
 if __name__ == "__main__":
-    """Entry point
-    """
-
+    """Entry point"""
     StateCode().loop()
