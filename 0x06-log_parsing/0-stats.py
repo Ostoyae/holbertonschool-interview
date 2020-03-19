@@ -57,7 +57,7 @@ class StateCode:
             sc = ""
             for (k, v) in self._status.items():
                 if v > 0:
-                    sc += f"{k}: {v}\n"
+                    sc += f"{k}: {v}\n".format(k=k, v=v)
 
             print(f"File size: {self._file_size}\n{sc}", sep="")
 
