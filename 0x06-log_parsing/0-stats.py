@@ -46,29 +46,37 @@ class StateCode:
             print("File size: {}".format(self._file_size))
             for (k, v) in self._status.items():
                 if v > 0:
-                    print("{k}: {v}".format(k=k, v=v))
+                    print("{}: {}".format(k, v))
 
     def loop(self):
         """
         looping body of the application
         """
 
-        def signal_handel(sig, frame):
-            sc = ""
-            for (k, v) in self._status.items():
-                if v > 0:
-                    sc += "{key}: {val}\n".format(key=k, val=v)
-
-            print("File size: {}\n{}".format(self._file_size, sc))
-
-            raise KeyboardInterrupt
-
-        signal.signal(signal.SIGINT, signal_handel)
+        # def signal_handel(sig, frame):
+        #     sc = ""
+        #     for (k, v) in self._status.items():
+        #         if v > 0:
+        #             sc += "{key}: {val}\n".format(key=k, val=v)
+        #
+        #     print("File size: {}\n{}".format(self._file_size, sc, sep=""))
+        #
+        #     raise KeyboardInterrupt
+        #
+        # signal.signal(signal.SIGINT, signal_handel)
         with sys.stdin as reader:
-            while True:
-                line = reader.readline(self._buf_size)[1:]
-                if len(line) > 0:
-                    self.process(line)
+            try:
+                while True:
+                    line = reader.readline(self._buf_size)[1:]
+                    if len(line) > 0:
+                        self.process(line)
+            except KeyboardInterrupt:
+                sc = ""
+                for (k, v) in self._status.items():
+                    if v > 0:
+                        sc += "{key}: {val}\n".format(key=k, val=v)
+
+                print("File size: {}\n{}".format(self._file_size, sc, sep=""))
 
 
 if __name__ == "__main__":
