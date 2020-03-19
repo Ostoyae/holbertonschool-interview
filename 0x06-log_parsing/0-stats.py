@@ -46,7 +46,7 @@ class StateCode:
             print("File size: {}".format(self._file_size))
             for (k, v) in self._status.items():
                 if v > 0:
-                    print(f"{k}: {v}")
+                    print("{k}: {v}".format(k=k, v=v))
 
     def loop(self):
         """
@@ -57,9 +57,9 @@ class StateCode:
             sc = ""
             for (k, v) in self._status.items():
                 if v > 0:
-                    sc += f"{k}: {v}\n".format(k=k, v=v)
+                    sc += "{key}: {val}\n".format(key=k, val=v)
 
-            print(f"File size: {self._file_size}\n{sc}", sep="")
+            print("File size: {}\n{}".format(self._file_size, sc))
 
             raise KeyboardInterrupt
 
