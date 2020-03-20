@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """ 0x06 log parsing This program will parse each line."""
 
-import sys
-
 
 class LineParser:
     """Define method for parsing
@@ -19,35 +17,36 @@ class LineParser:
         except IndexError:
             pass
 
-        return (0, 0)
+        return 0, 0
 
 
 if __name__ == "__main__":
+    import sys
 
     buf_size = 512
     file_size = 0
     read_iter = 0
-    _status = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    status_code = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 
     with sys.stdin as reader:
         try:
             while True:
-                line = reader.readline(buf_size)[1:]
-                if len(line) > 0:
-                    read_iter += 1
+                line = reader.readline(buf_size)
+                if len(line) > 2:
                     (status, length) = LineParser.parse_line(line)
                     file_size += length
-                    if status in _status.keys():
-                        _status[status] += 1
+                    if status in status_code.keys():
+                        read_iter += 1
+                        status_code[status] += 1
 
                     if read_iter % 10 == 0:
                         print("File size: {}".format(file_size))
-                        for (k, v) in _status.items():
+                        for (k, v) in status_code.items():
                             if v > 0:
                                 print("{}: {}".format(k, v))
         except KeyboardInterrupt:
             sc = ""
-            for (k, v) in _status.items():
+            for (k, v) in status_code.items():
                 if v > 0:
                     sc += "{key}: {val}\n".format(key=k, val=v)
 
