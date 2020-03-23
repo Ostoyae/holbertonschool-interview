@@ -10,9 +10,7 @@ int check_cycle(listint_t *list)
 	listint_t *slow, *fast;
 	int toggle;
 
-	if (!list)
-		return (0);
-	else if (!list->next)
+	if (!list || !list->next)
 		return (0);
 
 	toggle = 0;
