@@ -26,7 +26,9 @@ if __name__ == "__main__":
     buf_size = 512
     file_size = 0
     read_iter = 0
-    status_code = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    status_code = {200: 0, 301: 0, 400: 0,
+                   401: 0, 403: 0, 404: 0,
+                   405: 0, 500: 0}
 
     with sys.stdin as reader:
         try:
