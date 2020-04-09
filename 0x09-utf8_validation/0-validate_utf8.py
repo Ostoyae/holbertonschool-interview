@@ -20,3 +20,7 @@ def validUTF8(data):
 
 def validUTF8_bytes(data, n):
     """ method that will validate a set of bytes as utf-8"""
+
+
+if __name__ == "__main__":
+    pass
