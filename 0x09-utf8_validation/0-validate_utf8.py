@@ -11,10 +11,9 @@ def validUTF8(data):
     @return: True if utf-8 else false
     """
     i = 0
-    while i < len(data):
-        if data[i] >> 7 & 0:
-            i += 1
-            continue
+    for n in data:
+        if n > 128:
+            return False
 
     return True
 
