@@ -26,8 +26,8 @@ def validUTF8(data):
     i = 0
     while i < len(data):
         try:
-            if data[i] & (1<<7) == 0:
-                i+=1
+            if data[i] & (1 << 7) == 0:
+                i += 1
                 continue
             if data[i] & (1 << 6) == 0:
                 if (not validUTF8_bytes(data[i:i+1])):
@@ -45,8 +45,8 @@ def validUTF8(data):
                 return False
         except IndexError:
             return False
-        
-        i+=1
+
+        i += 1
 
     return True
 
@@ -56,9 +56,9 @@ def validUTF8_bytes(data):
     for b in data[1:]:
         if b & (1 << 7) != 1:
             return False
-    
 
     return True
+
 
 if __name__ == "__main__":
     pass
