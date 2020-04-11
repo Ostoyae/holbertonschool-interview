@@ -24,21 +24,25 @@ def validUTF8(data):
     """
 
     i = 0
+
     while i < len(data):
+        if (data[i] > 255):
+            return False 
         try:
-            if data[i] & (1 << 8) == 0:
+            if data[i] & (1 << 7) == 0 << 7:
                 i += 1
                 continue
-            if data[i] & (1 << 7) == 0:
-                if (not validUTF8_bytes(data[i:i+2])):
+            if data[i] & (1 << 5) == 0 << 5:
+                if (not validUTF8_bytes(data[i:i+2],2)):
                     return False
                 i += 2
-            elif data[i] & (1 << 6) == 0:
-                if (not validUTF8_bytes(data[i:i+3])):
+            elif data[i] & (1 << 4) == 0 << 4:
+
+                if (not validUTF8_bytes(data[i:i+3],3)):
                     return False
                 i += 3
-            elif data[i] & (1 << 5) == 0:
-                if (not validUTF8_bytes(data[i:i+4])):
+            elif data[i] & (1 << 3) == 0 << 3:
+                if (not validUTF8_bytes(data[i:i+4],4)):
                     return False
                 i += 4
             else:
@@ -50,12 +54,13 @@ def validUTF8(data):
     return True
 
 
-def validUTF8_bytes(data):
+def validUTF8_bytes(data, n):
     """ method that will validate a set of bytes as utf-8"""
     
-
+    if (len(data) != n):
+        return False
     for b in data[1:]:
-        if b & (1 << 7) != 0:
+        if b & (1 << 6) != 0 << 6:
             return False
 
     return True
