@@ -10,6 +10,9 @@
  */
 int slide_line(int *line, size_t size, int direction)
 {
+	if (!line || size <= (size_t) 0)
+		return (0);
+
 	switch (direction)
 	{
 		case LEFT:
