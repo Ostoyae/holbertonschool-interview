@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "menger.h"
 
@@ -18,7 +19,6 @@ void menger(int level)
 
 	level = (int) pow(3, level);
 
-
 	sponge = generate_sponge(level);
 
 	print_sponge(sponge, level);
@@ -26,11 +26,27 @@ void menger(int level)
 }
 
 /**
- * generate_sponge - creates a array
- * @level: size
+ * generate_sponge - generate a sponge (square)
+ * @level: detail level and size 3^n
  * Return: array
  */
 char **generate_sponge(int level)
+{
+	char **sponge;
+
+	sponge = sponge_base(level);
+	/** cut_sponge(sponge, level); */
+
+	return (sponge);
+}
+
+
+/**
+ * sponge_base - creates the base (square)
+ * @level: size
+ * Return: array
+ */
+char **sponge_base(int level)
 {
 	char **sponge;
 	int i;
@@ -49,6 +65,7 @@ char **generate_sponge(int level)
 	return (sponge);
 }
 
+
 /**
  * print_sponge - prints a sponge
  * @sponge: sponge to print
@@ -56,7 +73,7 @@ char **generate_sponge(int level)
  */
 void print_sponge(char **sponge, int level)
 {
-	size_t i, j;
+	int i, j;
 
 	for (i = 0; i < level; i++)
 	{
