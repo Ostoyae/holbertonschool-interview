@@ -5,11 +5,6 @@
 
 static avl_t *new_node(int n, avl_t *parent);
 
-void from_avl_lib()
-{
-	printf("from array to avl lib");
-}
-
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
 	avl_t *head;
