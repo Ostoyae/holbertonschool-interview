@@ -2,9 +2,20 @@
 #include "binary_trees.h"
 #include <stdlib.h>
 
-
+/**
+ * new_node - stuff
+ * @n: number to set new node
+ * @parent: parent to give node
+ * Return: pointer to new node
+ */
 static avl_t *new_node(int n, avl_t *parent);
 
+/**
+ * sorted_array_to_avl - entry to sorting array to nodes
+ * @array: array to sort
+ * @size: size of array
+ * Return: pointer to sorted
+ */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
 	avl_t *head;
@@ -24,9 +35,18 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	return (head);
 }
 
+/**
+ * sorted_array_to_avl_rec - receive solve
+ * @array: array to sort
+ * @parent : parent to use
+ * @size : size of array
+ * @start : start of slice
+ * @end:  of slice
+ * Return: pointer to sorted
+ */
 avl_t *sorted_array_to_avl_rec(int *array, avl_t *parent,
-                               size_t size, size_t start,
-                               size_t end)
+size_t size, size_t start,
+size_t end)
 {
 	avl_t *head;
 	size_t h_idx;
@@ -37,12 +57,12 @@ avl_t *sorted_array_to_avl_rec(int *array, avl_t *parent,
 		if (end == start)
 		{
 			head = new_node(array[end], parent);
-			if (end + 1 == size )
+			if (end + 1 == size)
 			{
 				parent->right = parent->left;
 				parent->left = NULL;
 			}
-			return head;
+			return (head);
 		} else if (end == size / 2)
 		{
 			return (NULL);
@@ -53,7 +73,7 @@ avl_t *sorted_array_to_avl_rec(int *array, avl_t *parent,
 	{
 		/** left **/
 		if (start == end)
-			return new_node(array[start], parent);
+			return (new_node(array[start], parent));
 		else if (end < start)
 			return (NULL);
 	}
@@ -70,6 +90,12 @@ avl_t *sorted_array_to_avl_rec(int *array, avl_t *parent,
 	return (head);
 }
 
+/**
+ * new_node - stuff
+ * @n: number to set new node
+ * @parent: parent to give node
+ * Return: pointer to new node
+ */
 static avl_t *new_node(int n, avl_t *parent)
 {
 	avl_t *node;
