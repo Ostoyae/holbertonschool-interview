@@ -38,9 +38,9 @@ function closeWithError (err) {
 }
 
 function characterRoster (charList) {
-  var promisArray = new Array(charList.length);
+  const promisArray = new Array(charList.length);
 
-  for (var i = 0; i < charList.length; i++) {
+  for (let i = 0; i < charList.length; i++) {
     promisArray[i] = (new Promise((resolve, reject) => {
       request.get(charList[i])
         .on('data', function (data) { resolve(JSON.parse(data).name); });
@@ -53,3 +53,4 @@ function characterRoster (charList) {
     });
   });
 }
+
