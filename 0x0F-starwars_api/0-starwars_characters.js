@@ -53,4 +53,3 @@ function characterRoster (charList) {
     });
   });
 }
-
