@@ -80,3 +80,7 @@ def process_data(data, word_list, word_count):
                     re.IGNORECASE
                 )
             )
+
+
+if __name__ == '__main__':
+    pass
