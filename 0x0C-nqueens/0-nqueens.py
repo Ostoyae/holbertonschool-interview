@@ -92,6 +92,18 @@ def print_result(board, size):
 if __name__ == "__main__":
     import sys
 
-    if len(sys.argv) >= 2:
-        n = int(sys.argv[1])
-        solverPossibleNQ(n)
+    try:
+
+        if len(sys.argv) >= 2:
+            if int(sys.argv[1]) >= 4:
+                n = int(sys.argv[1])
+                solverPossibleNQ(n)
+            else:
+                print("N must be at least 4")
+                exit(1)
+        else:
+            print("Usage: nqueens N")
+            exit(1)
+    except ValueError:
+        print("N must be a number")
+        exit(1)
