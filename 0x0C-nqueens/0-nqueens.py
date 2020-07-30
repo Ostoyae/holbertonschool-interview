@@ -41,6 +41,7 @@ def solveNQ(board, row):
     """
     global N
     if row == N:
+        print_result(board, N)
         return True
 
     res = False
@@ -48,6 +49,8 @@ def solveNQ(board, row):
         if isSafe(board, row, col, N):
             board[row][col] = 1
             res = solveNQ(board, row + 1)
+            if not res:
+                board[row][col] = 0
 
     return res
 
@@ -68,12 +71,7 @@ def solverPossibleNQ(size):
         board = [[0 for i in range(N)] for i in range(N)]
         board[0][row] = 1
         if solveNQ(board, 1):
-
             found.append(board)
-
-    if len(found) > 0:
-        for f in found:
-            print_result(f, size)
 
 
 def print_result(board, size):
