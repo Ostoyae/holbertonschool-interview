@@ -93,6 +93,7 @@ def print_result(board, size):
                 out.append([i, j])
     print(out)
 
+
 def append_result(board, size):
     """
     print out each queens location per row
@@ -108,9 +109,8 @@ def append_result(board, size):
             if board[i][j] == 1:
                 out.append([i, j])
 
-    if not out in found:
-            found.append(out)
-
+    if out not in found:
+        found.append(out)
 
 
 if __name__ == "__main__":
