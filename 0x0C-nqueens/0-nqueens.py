@@ -32,7 +32,7 @@ def isSafe(board, row, col, size):
     return True
 
 
-def solveNQ(board, row):
+def solveNQ(board, row, col):
     """
     Recursive N Queen Solver
     @param board: board to add propagate queens on
@@ -41,14 +41,16 @@ def solveNQ(board, row):
     """
     global N
     if row == N:
-        print_result(board, N)
+        # print_result(board, N)
+        append_result(board, N)
         return True
+    # print_result(board,N)
 
     res = False
-    for col in range(0, N):
+    for col in range(col, N):
         if isSafe(board, row, col, N):
             board[row][col] = 1
-            res = solveNQ(board, row + 1)
+            res = solveNQ(board, row + 1, 0)
             if not res:
                 board[row][col] = 0
 
@@ -68,10 +70,13 @@ def solverPossibleNQ(size):
         N = size
 
     for row in range(0, N):
-        board = [[0 for i in range(N)] for i in range(N)]
-        board[0][row] = 1
-        if solveNQ(board, 1):
-            found.append(board)
+        for col in range(0, N):
+            board = [[0 for i in range(N)] for i in range(N)]
+            board[0][row] = 1
+            solveNQ(board, 1, col)
+
+    for f in found:
+        print(f)
 
 
 def print_result(board, size):
@@ -87,6 +92,25 @@ def print_result(board, size):
             if board[i][j] == 1:
                 out.append([i, j])
     print(out)
+
+def append_result(board, size):
+    """
+    print out each queens location per row
+    @param board: board to print
+    @param size: size of the board
+    @return: None
+    """
+
+    global found
+    out = []
+    for i in range(size):
+        for j in range(size):
+            if board[i][j] == 1:
+                out.append([i, j])
+
+    if not out in found:
+            found.append(out)
+
 
 
 if __name__ == "__main__":
