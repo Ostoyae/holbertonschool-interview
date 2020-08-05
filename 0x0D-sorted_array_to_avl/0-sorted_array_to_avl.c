@@ -56,7 +56,7 @@ avl_t *sorted_array_to_avl_rec(int *array,
  * @parent: parent to give node
  * Return: pointer to new node
  */
-static avl_t *new_node(int n, avl_t *parent)
+avl_t *new_node(int n, avl_t *parent)
 {
 	avl_t *node;
 
