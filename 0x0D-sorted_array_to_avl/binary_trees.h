@@ -23,11 +23,19 @@ typedef struct binary_tree_s binary_tree_t;
 
 typedef struct binary_tree_s avl_t;
 
-void print_array(const int *array, size_t size);
+void _print_array(const int *array, size_t size);
+
 void binary_tree_print(const binary_tree_t *);
+
 char **binary_tree_string(const binary_tree_t *tree);
 
 avl_t *sorted_array_to_avl(int *array, size_t size);
-avl_t *sorted_array_to_avl_rec(int *array, avl_t *parent, size_t size, size_t start, size_t end);
+
+avl_t *new_node(int n, avl_t *parent);
+
+avl_t *sorted_array_to_avl_rec(
+	int *array, avl_t *parent,
+	int start,
+	int end);
 
 #endif

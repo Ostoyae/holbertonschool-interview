@@ -97,25 +97,3 @@ void binary_tree_print(const binary_tree_t *tree)
 	}
 	free(s);
 }
-
-char **binary_tree_string(const binary_tree_t *tree)
-{
-	char **s;
-	size_t height, i, j;
-
-	if (!tree)
-		return (NULL);
-	height = _height(tree);
-	s = malloc(sizeof(*s) * (height + 1));
-	if (!s)
-		return (NULL);
-	for (i = 0; i < height + 1; i++)
-	{
-		s[i] = malloc(sizeof(**s) * 255);
-		if (!s[i])
-			return (NULL);
-		memset(s[i], 32, 255);
-	}
-	print_t(tree, 0, 0, s);
-	return (s);
-}
