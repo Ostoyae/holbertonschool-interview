@@ -44,6 +44,8 @@ avl_t *sorted_array_to_avl_rec(int *array,
 	mid = (size_t)(start + end) / 2;
 
 	head = new_node(array[mid], parent);
+	if (!head)
+		return (NULL);
 	head->left = sorted_array_to_avl_rec(array, head, start, mid - 1);
 	head->right = sorted_array_to_avl_rec(array, head, mid + 1, end);
 
