@@ -10,6 +10,7 @@
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *node;
+	size_t count;
 
 	node = list;
 	if (!list)
@@ -20,8 +21,9 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	else if (node->n == value)
 		return (node);
 
-
-	skip_some(node, value);
+	for (count = 0; node->next; node = node->next, count++);
+	node = list;
+	skip_some(&node, value, count);
 
 	while (node)
 	{
@@ -39,23 +41,38 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
  * @list: pointer to a linked list
  * @value: value to search for
  */
-void skip_some(skiplist_t *list, int value)
+void skip_some(skiplist_t **list, int value, size_t size)
 {
 	skiplist_t *node;
 
-	node = list;
+	node = *list;
 
 	while (node && node->express)
 	{
 
 		if (!node->index == 0)
+		{
 			printf("Value checked at index [%ld] = [%d]\n", node->index,
 			       node->n);
+			if (node->express)
+				*list = node->express;
+			else
+				*list = node;
+
+//			printf("\texpress idx is %d\n", node->express->index);
+		}
+
 		if (node->express && value > node->express->n)
 		{
 			node = node->express;
+			if (!node->express)
+				printf("Value found between indexes [%ld] = [%ld]\n",
+				       node->index,
+				       size);
+
 			continue;
 		}
+
 		if (node->express && value < node->express->n)
 		{
 			printf("Value checked at index [%ld] = [%d]\n",
@@ -64,8 +81,11 @@ void skip_some(skiplist_t *list, int value)
 			printf("Value found between indexes [%ld] = [%ld]\n",
 			       node->index,
 			       node->express->index);
+			*list = node;
 			break;
 		}
+
+
 	}
 }
 

@@ -22,7 +22,7 @@ typedef struct skiplist_s
 } skiplist_t;
 
 skiplist_t *linear_skip(skiplist_t *list, int value);
-void skip_some(skiplist_t *list, int value);
+void skip_some(skiplist_t **list, int value, size_t size);
 
 
 #endif
