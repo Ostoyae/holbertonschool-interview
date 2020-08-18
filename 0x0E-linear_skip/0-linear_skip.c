@@ -51,25 +51,18 @@ void skip_some(skiplist_t **list, int value, size_t size)
 
 	while (node && node->express)
 	{
-		if (!node->index == 0)
-		{
-			printf("Value checked at index [%ld] = [%d]\n", node->index,
-			       node->n);
-			if (node->express)
-				*list = node->express;
-			else
-				*list = node;
-		}
 		if (node->express && value > node->express->n)
 		{
-			node = node->express;
+			*list = node = node->express;
+			printf("Value checked at index [%ld] = [%d]\n", node->index,
+			       node->n);
+
 			if (!node->express)
 				printf("Value found between indexes [%ld] and [%ld]\n",
 				       node->index,
 				       size);
-			continue;
 		}
-		if (node->express && value <= node->express->n)
+		else if (node->express && value <= node->express->n)
 		{
 			printf("Value checked at index [%ld] = [%d]\n",
 			       node->express->index,
@@ -78,7 +71,7 @@ void skip_some(skiplist_t **list, int value, size_t size)
 			       node->index,
 			       node->express->index);
 			*list = node;
-			break;
+			return;
 		}
 	}
 }
